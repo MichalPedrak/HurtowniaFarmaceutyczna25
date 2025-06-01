@@ -149,7 +149,7 @@ namespace HurtowniaFarmaceutycznaApp
                 case "Ilość rosnąco":
                     products = products.OrderBy(p => p.Quantity).ToList();
                     break;
-                case "Ilo�� malej�co":
+                case "Ilość malej�co":
                     products = products.OrderByDescending(p => p.Quantity).ToList();
                     break;
                 case "Termin rosn�co":
