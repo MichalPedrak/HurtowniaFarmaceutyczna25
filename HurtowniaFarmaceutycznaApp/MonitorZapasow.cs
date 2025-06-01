@@ -85,7 +85,7 @@ namespace HurtowniaFarmaceutycznaApp
 
             if (string.IsNullOrWhiteSpace(name))
             {
-                MessageBox.Show("Nazwa leku nie mo�e by� pusta.");
+                MessageBox.Show("Nazwa leku nie może być pusta.");
                 return;
             }
 
@@ -97,6 +97,7 @@ namespace HurtowniaFarmaceutycznaApp
             }
             else
             {
+                // TODO: tutaj zmianić na polimorfizm, żeby 
                 var med = new Medicine(name, quantity, expiration);
                 products.Add(med);
             }
