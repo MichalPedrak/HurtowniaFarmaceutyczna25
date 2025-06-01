@@ -16,7 +16,7 @@ namespace HurtowniaFarmaceutycznaApp
         {
             InitializeComponent();
 
-            cmbSort.Items.Add("Ilo�� rosn�co");
+            cmbSort.Items.Add("Ilość rosn�co");
             cmbSort.Items.Add("Ilo�� malej�co");
             cmbSort.Items.Add("Termin rosn�co");
             cmbSort.Items.Add("Termin malej�co");
