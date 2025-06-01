@@ -155,7 +155,7 @@ namespace HurtowniaFarmaceutycznaApp
                 case "Termin rosn�co":
                     products = products.OrderBy(p => p.ExpirationDate).ToList();
                     break;
-                case "Termin malej�co":
+                case "Termin malejąco":
                     products = products.OrderByDescending(p => p.ExpirationDate).ToList();
                     break;
             }
