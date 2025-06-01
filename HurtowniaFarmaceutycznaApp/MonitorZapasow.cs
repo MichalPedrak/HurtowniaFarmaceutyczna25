@@ -146,7 +146,7 @@ namespace HurtowniaFarmaceutycznaApp
 
             switch (selected)
             {
-                case "Ilo�� rosn�co":
+                case "Ilość rosnąco":
                     products = products.OrderBy(p => p.Quantity).ToList();
                     break;
                 case "Ilo�� malej�co":
