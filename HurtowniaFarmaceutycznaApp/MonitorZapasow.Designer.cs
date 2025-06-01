@@ -1,6 +1,6 @@
 ﻿namespace HurtowniaFarmaceutycznaApp
 {
-    partial class MonitorZapasów
+    partial class MonitorZapasow
     {
         /// <summary>
         ///  Required designer variable.
@@ -286,7 +286,7 @@
             txtSearch.TabIndex = 21;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
-            // MonitorZapasów
+            // MonitorZapasow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -312,10 +312,10 @@
             Controls.Add(txtName);
             Controls.Add(lblName);
             Controls.Add(dataGridViewProducts);
-            Name = "MonitorZapasów";
+            Name = "MonitorZapasow";
             Text = "Form1";
-            Load += MonitorZapasów_Load;
-            Resize += MonitorZapasów_Resize;
+            Load += MonitorZapasow_Load;
+            Resize += MonitorZapasow_Resize;
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).EndInit();
             ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
             ((System.ComponentModel.ISupportInitialize)numNewQty).EndInit();

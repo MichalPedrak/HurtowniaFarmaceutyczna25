@@ -5,21 +5,21 @@ using System.Text.Json;
 
 namespace HurtowniaFarmaceutycznaApp
 {
-    public partial class MonitorZapasów : Form
+    public partial class MonitorZapasow : Form
     {
         private List<IProduct> products = new();
 
         private Size originalFormSize;
         private Dictionary<Control, Rectangle> originalControlBounds = new();
 
-        public MonitorZapasów()
+        public MonitorZapasow()
         {
             InitializeComponent();
 
-            cmbSort.Items.Add("Iloœæ rosn¹co");
-            cmbSort.Items.Add("Iloœæ malej¹co");
-            cmbSort.Items.Add("Termin rosn¹co");
-            cmbSort.Items.Add("Termin malej¹co");
+            cmbSort.Items.Add("Iloï¿½ï¿½ rosnï¿½co");
+            cmbSort.Items.Add("Iloï¿½ï¿½ malejï¿½co");
+            cmbSort.Items.Add("Termin rosnï¿½co");
+            cmbSort.Items.Add("Termin malejï¿½co");
             cmbSort.SelectedIndex = 0;
 
             if (!File.Exists("leki.json"))
@@ -54,9 +54,9 @@ namespace HurtowniaFarmaceutycznaApp
         {
             foreach (DataGridViewRow row in dataGridViewProducts.Rows)
             {
-                // Upewniamy siê, ¿e nie jesteœmy na nowym wierszu (np. dodawanym rêcznie)
+                // Upewniamy siï¿½, ï¿½e nie jesteï¿½my na nowym wierszu (np. dodawanym rï¿½cznie)
                 if (row.IsNewRow) continue;
-                // Pobieramy datê z kolumny o nazwie "DataWaznosci"
+                // Pobieramy datï¿½ z kolumny o nazwie "DataWaznosci"
                 DateTime dataWaznosci;
                 if (DateTime.TryParse(row.Cells["ExpirationDate"].Value?.ToString(), out dataWaznosci))
                 {
@@ -85,7 +85,7 @@ namespace HurtowniaFarmaceutycznaApp
 
             if (string.IsNullOrWhiteSpace(name))
             {
-                MessageBox.Show("Nazwa leku nie mo¿e byæ pusta.");
+                MessageBox.Show("Nazwa leku nie moï¿½e byï¿½ pusta.");
                 return;
             }
 
@@ -112,7 +112,7 @@ namespace HurtowniaFarmaceutycznaApp
             var options = new JsonSerializerOptions
             {
                 WriteIndented = true,
-                Converters = { new ProductJsonConverter() } // jeœli IProduct jest interfejsem
+                Converters = { new ProductJsonConverter() } // jeï¿½li IProduct jest interfejsem
             };
 
             File.WriteAllText("leki.json", JsonSerializer.Serialize(products, options));
@@ -145,16 +145,16 @@ namespace HurtowniaFarmaceutycznaApp
 
             switch (selected)
             {
-                case "Iloœæ rosn¹co":
+                case "Iloï¿½ï¿½ rosnï¿½co":
                     products = products.OrderBy(p => p.Quantity).ToList();
                     break;
-                case "Iloœæ malej¹co":
+                case "Iloï¿½ï¿½ malejï¿½co":
                     products = products.OrderByDescending(p => p.Quantity).ToList();
                     break;
-                case "Termin rosn¹co":
+                case "Termin rosnï¿½co":
                     products = products.OrderBy(p => p.ExpirationDate).ToList();
                     break;
-                case "Termin malej¹co":
+                case "Termin malejï¿½co":
                     products = products.OrderByDescending(p => p.ExpirationDate).ToList();
                     break;
             }
@@ -162,7 +162,7 @@ namespace HurtowniaFarmaceutycznaApp
             RefreshGrid();
         }
 
-        private void MonitorZapasów_Load(object sender, EventArgs e)
+        private void MonitorZapasow_Load(object sender, EventArgs e)
         {
             originalFormSize = this.Size;
             SaveInitialControlBounds(this);
@@ -176,8 +176,8 @@ namespace HurtowniaFarmaceutycznaApp
             if (selected == null) return;
 
             var confirm = MessageBox.Show(
-                $"Na pewno usun¹æ: {selected.Name} (do {selected.ExpirationDate:yyyy-MM-dd})?",
-                "PotwierdŸ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                $"Na pewno usunï¿½ï¿½: {selected.Name} (do {selected.ExpirationDate:yyyy-MM-dd})?",
+                "Potwierdï¿½", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (confirm == DialogResult.Yes)
             {
@@ -214,7 +214,7 @@ namespace HurtowniaFarmaceutycznaApp
             }
         }
 
-        private void MonitorZapasów_Resize(object sender, EventArgs e)
+        private void MonitorZapasow_Resize(object sender, EventArgs e)
         {
             float scaleX = (float)this.Width / originalFormSize.Width;
             float scaleY = (float)this.Height / originalFormSize.Height;
