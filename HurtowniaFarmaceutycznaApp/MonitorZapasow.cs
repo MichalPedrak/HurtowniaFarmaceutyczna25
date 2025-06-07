@@ -5,9 +5,10 @@ using System.Text.Json;
 
 namespace HurtowniaFarmaceutycznaApp
 {
+
     public partial class MonitorZapasow : Form
     {
-        private List<IProduct> products = new();
+        private List<Medicine> products = new();
 
         private Size originalFormSize;
         private Dictionary<Control, Rectangle> originalControlBounds = new();
@@ -30,10 +31,10 @@ namespace HurtowniaFarmaceutycznaApp
 
             var options = new JsonSerializerOptions
             {
-                Converters = { new ProductJsonConverter() }
+                Converters = { new ProductConverter() }
             };
 
-            products = JsonSerializer.Deserialize<List<IProduct>>(File.ReadAllText("leki.json"), options)!;
+            products = JsonSerializer.Deserialize<List<Medicine>>(File.ReadAllText("leki.json"), options)!;
 
             RefreshGrid();
             MessageBox.Show("Dane wczytane.");
@@ -47,6 +48,7 @@ namespace HurtowniaFarmaceutycznaApp
         {
             dataGridViewProducts.DataSource = null;
             dataGridViewProducts.DataSource = products;
+
             ColorExpiredProducts();
         }
 
@@ -82,6 +84,7 @@ namespace HurtowniaFarmaceutycznaApp
             string name = txtName.Text;
             int quantity = (int)numQuantity.Value;
             DateTime expiration = dtpExpiration.Value;
+            MedicineType type = (MedicineType)cmbMedicineType.SelectedItem;
 
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -98,9 +101,22 @@ namespace HurtowniaFarmaceutycznaApp
             else
             {
                 // TODO: tutaj zmianić na polimorfizm, żeby 
-                var med = new Medicine(name, quantity, expiration);
+
+                Medicine med;
+                switch (type)
+                {
+                    case MedicineType.Antybiotyk:
+                        med = new Antibiotic(name, quantity, expiration, type);
+                        break;
+                    case MedicineType.Przeciwbolowa:
+                        med = new PainKiller(name, quantity, expiration, type);
+                        break;
+                    default:
+                        throw new Exception("Nieobsługiwany typ leku");
+                   
+                }
                 products.Add(med);
-            }
+            } 
             DataStorage.Save(products);
             RefreshGrid();
 
@@ -133,7 +149,7 @@ namespace HurtowniaFarmaceutycznaApp
                 Converters = { new ProductJsonConverter() }
             };
 
-            products = JsonSerializer.Deserialize<List<IProduct>>(File.ReadAllText("leki.json"), options)!;
+            products = JsonSerializer.Deserialize<List<Medicine>>(File.ReadAllText("leki.json"), options)!;
 
             RefreshGrid();
             MessageBox.Show("Dane wczytane.");
@@ -173,7 +189,7 @@ namespace HurtowniaFarmaceutycznaApp
         {
             if (dataGridViewProducts.CurrentRow == null) return;
 
-            var selected = dataGridViewProducts.CurrentRow.DataBoundItem as IProduct;
+            var selected = dataGridViewProducts.CurrentRow.DataBoundItem as Medicine;
             if (selected == null) return;
 
             var confirm = MessageBox.Show(

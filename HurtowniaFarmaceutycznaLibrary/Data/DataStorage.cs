@@ -12,7 +12,7 @@ namespace HurtowniaFarmaceutycznaLibrary.Data
     {
         private static string filePath = "data.json";
 
-        public static void Save(List<IProduct> products)
+        public static void Save(List<Medicine> products)
         {
             var options = new JsonSerializerOptions
             {
@@ -23,16 +23,16 @@ namespace HurtowniaFarmaceutycznaLibrary.Data
             File.WriteAllText(filePath, JsonSerializer.Serialize(products, options));
         }
 
-        public static List<IProduct> Load()
+        public static List<Medicine> Load()
         {
-            if (!File.Exists(filePath)) return new List<IProduct>();
+            if (!File.Exists(filePath)) return new List<Medicine>();
 
             var options = new JsonSerializerOptions
             {
                 Converters = { new ProductConverter() }
             };
 
-            return JsonSerializer.Deserialize<List<IProduct>>(File.ReadAllText(filePath), options) ?? new();
+            return JsonSerializer.Deserialize<List<Medicine>>(File.ReadAllText(filePath), options) ?? new();
         }
     }
 }

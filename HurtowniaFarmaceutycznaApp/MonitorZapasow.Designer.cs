@@ -1,16 +1,12 @@
 ﻿namespace HurtowniaFarmaceutycznaApp
 {
+    using HurtowniaFarmaceutycznaLibrary.Models;
+    
     partial class MonitorZapasow
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
+
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -55,6 +51,7 @@
             // 
             // dataGridViewProducts
             // 
+            dataGridViewProducts.AutoGenerateColumns = true;
             dataGridViewProducts.AllowUserToAddRows = false;
             dataGridViewProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -120,6 +117,30 @@
             dtpExpiration.Name = "dtpExpiration";
             dtpExpiration.Size = new Size(213, 23);
             dtpExpiration.TabIndex = 6;
+  
+            // 
+            // lblMedicineType
+            // 
+            lblMedicineType = new Label();
+            lblMedicineType.AutoSize = true;
+            lblMedicineType.ForeColor = Color.White;
+            lblMedicineType.Location = new Point(725, 250); 
+            lblMedicineType.Name = "lblMedicineType";
+            lblMedicineType.Size = new Size(213, 23);
+            lblMedicineType.Text = "Typ leku";
+            // 
+            // cmbMedicineType
+            // 
+            cmbMedicineType = new ComboBox();
+            cmbMedicineType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbMedicineType.Location = new Point(832, 250); 
+            cmbMedicineType.Name = "cmbMedicineType";
+            cmbMedicineType.Size = new Size(150, 23);
+            cmbMedicineType.TabIndex = 2;
+            
+            cmbMedicineType.DataSource = Enum.GetValues(typeof(MedicineType));
+      
+
             // 
             // btnAdd
             // 
@@ -128,7 +149,7 @@
             btnAdd.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
             btnAdd.FlatStyle = FlatStyle.Popup;
             btnAdd.ForeColor = Color.Black;
-            btnAdd.Location = new Point(725, 251);
+            btnAdd.Location = new Point(725, 280);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(320, 57);
             btnAdd.TabIndex = 7;
@@ -306,6 +327,8 @@
             Controls.Add(btnSort);
             Controls.Add(btnAdd);
             Controls.Add(dtpExpiration);
+            Controls.Add(lblMedicineType);
+            Controls.Add(cmbMedicineType);
             Controls.Add(numQuantity);
             Controls.Add(lblDate);
             Controls.Add(lblQty);
@@ -332,6 +355,8 @@
         private Label lblDate;
         private NumericUpDown numQuantity;
         private DateTimePicker dtpExpiration;
+        private ComboBox cmbMedicineType;
+        private Label lblMedicineType;
         private Button btnAdd;
         private Button btnSort;
         private ComboBox cmbSort;
