@@ -129,7 +129,7 @@ namespace HurtowniaFarmaceutycznaApp
             var options = new JsonSerializerOptions
             {
                 WriteIndented = true,
-                Converters = { new ProductJsonConverter() } // je�li IProduct jest interfejsem
+                Converters = { new ProductConverter() } // je�li IProduct jest interfejsem
             };
 
             File.WriteAllText("leki.json", JsonSerializer.Serialize(products, options));
@@ -146,7 +146,7 @@ namespace HurtowniaFarmaceutycznaApp
 
             var options = new JsonSerializerOptions
             {
-                Converters = { new ProductJsonConverter() }
+                Converters = { new ProductConverter() }
             };
 
             products = JsonSerializer.Deserialize<List<Medicine>>(File.ReadAllText("leki.json"), options)!;

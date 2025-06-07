@@ -17,7 +17,14 @@ namespace HurtowniaFarmaceutycznaLibrary.Models
         {
             // np. specjalna logika: antybiotyki nie mogą mieć ilości ujemnej
             if (Quantity + amount >= 0)
+            {
                 base.UpdateQuantity(amount);
+            }
+            else
+            {
+                throw new InvalidOperationException("Ilość antybiotyku nie może być ujemna");
+            }
+               
         }
     }
 }

@@ -12,28 +12,32 @@ namespace HurtowniaFarmaceutycznaLibrary.Models
     {
         private string _name;
         private int _quantity;
+        private DateTime _expirationDate;
+        private MedicineType _type;
 
         public string Name => _name;
         public int Quantity => _quantity;
-        public DateTime ExpirationDate { get; protected set; }
-        public MedicineType Type { get; set; }
+        public DateTime ExpirationDate => _expirationDate;
+        public MedicineType Type => _type;
         
-        protected Medicine() { }
 
         public Medicine(string name, int quantity, DateTime expirationDate, MedicineType type)
         {
             _name = name;
             _quantity = quantity;
-            ExpirationDate = expirationDate;
-            Type = type;
+            _expirationDate = expirationDate;
+            _type = type;      
         } 
 
-        // [Polimorfizm] - metoda może być przesłaniana
+
         public virtual void UpdateQuantity(int amount)
         {
             _quantity += amount;
         }
 
-        public override string ToString() => $"{Name} - {Quantity} szt. (do {ExpirationDate:yyyy-MM-dd})";
+        public override string ToString()
+        {
+            return $"{Name} - {Quantity} szt. (do {ExpirationDate:yyyy-MM-dd})";
+        }
     }
 }
