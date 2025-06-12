@@ -23,42 +23,56 @@ namespace HurtowniaFarmaceutycznaApp
             cmbSort.Items.Add("Termin malejąco");
             cmbSort.SelectedIndex = 0;
 
-            //if (!File.Exists("leki.json"))
-            //{
-            //    MessageBox.Show("Brak pliku do wczytania.");
-            //    return;
-            //}
-            //
-            //var options = new JsonSerializerOptions
-            //{
-            //   Converters = { new ProductConverter() }
-            //};
+            LoadData();
+            ClearStatusMessage();
 
-            products = DataStorage.Load(); //JsonSerializer.Deserialize<List<Medicine>>(File.ReadAllText("leki.json"), options)!;
 
-            RefreshGrid();
-            MessageBox.Show("Dane wczytane.");
-            RefreshGrid();
             this.MinimumSize = new Size(600, 400);
         }
 
+        private void ClearStatusMessage()
+        {
 
+            var timer = new System.Windows.Forms.Timer();
+            timer.Interval = 5000; // 5 sekund
+            timer.Tick += (s, e) =>
+            {
+                StatusStrip.Text = "";
+                timer.Stop();
+            };
+            timer.Start();
+        }
 
         private void RefreshGrid()
         {
             dataGridViewProducts.DataSource = null;
             dataGridViewProducts.DataSource = products;
-
             ColorExpiredProducts();
+        }
+
+        private void LoadData()
+        {
+            products = DataStorage.Load();
+            StatusStrip.ForeColor = Color.LimeGreen;
+            StatusStrip.Text = "Dane zostały wczytane z pliku data.json";
+            RefreshGrid();
+        }
+
+        private void SaveData(List<Medicine> products)
+        {
+            DataStorage.Save(products);
+            StatusStrip.ForeColor = Color.LimeGreen;
+            StatusStrip.Text = "Dane zostały zapisane do pliku data.json";
+            RefreshGrid();
         }
 
         private void ColorExpiredProducts()
         {
             foreach (DataGridViewRow row in dataGridViewProducts.Rows)
             {
-                // Upewniamy si�, �e nie jeste�my na nowym wierszu (np. dodawanym r�cznie)
+                
                 if (row.IsNewRow) continue;
-                // Pobieramy dat� z kolumny o nazwie "DataWaznosci"
+                
                 DateTime dataWaznosci;
                 if (DateTime.TryParse(row.Cells["ExpirationDate"].Value?.ToString(), out dataWaznosci))
                 {
@@ -100,7 +114,6 @@ namespace HurtowniaFarmaceutycznaApp
             }
             else
             {
-                // TODO: tutaj zmianić na polimorfizm, żeby 
 
                 Medicine med;
                 switch (type)
@@ -117,8 +130,7 @@ namespace HurtowniaFarmaceutycznaApp
                 }
                 products.Add(med);
             }
-            DataStorage.Save(products);
-            RefreshGrid();
+            SaveData(products);
 
             txtName.Clear();
             numQuantity.Value = 1;
@@ -129,31 +141,16 @@ namespace HurtowniaFarmaceutycznaApp
             var options = new JsonSerializerOptions
             {
                 WriteIndented = true,
-                Converters = { new ProductConverter() } // je�li IProduct jest interfejsem
+                Converters = { new ProductConverter() }
             };
 
-            //File.WriteAllText("leki.json", JsonSerializer.Serialize(products, options));
-            DataStorage.Save(products);
-            MessageBox.Show("Dane zapisane do pliku.");
+            SaveData(products);
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            //if (!File.Exists("data.json"))
-            //{
-            //    MessageBox.Show("Brak pliku do wczytania.");
-            //    return;
-            //}
-            //
-            //var options = new JsonSerializerOptions
-            //{
-            //    Converters = { new ProductConverter() }
-            //};
-            //
-            products = DataStorage.Load(); //JsonSerializer.Deserialize<List<Medicine>>(File.ReadAllText("leki.json"), options)!;
-
-            RefreshGrid();
-            MessageBox.Show("Dane wczytane.");
+            LoadData();
+            ClearStatusMessage();
         }
 
         private void btnSort_Click(object sender, EventArgs e)
@@ -200,8 +197,7 @@ namespace HurtowniaFarmaceutycznaApp
             if (confirm == DialogResult.Yes)
             {
                 products.Remove(selected);
-                DataStorage.Save(products);
-                RefreshGrid();
+                SaveData(products);
             }
         }
 
@@ -218,8 +214,7 @@ namespace HurtowniaFarmaceutycznaApp
             int delta = newQty - selected.Quantity;
             selected.UpdateQuantity(delta);
 
-            DataStorage.Save(products);
-            RefreshGrid();
+            SaveData(products);
         }
 
         private void SaveInitialControlBounds(Control parent)
@@ -283,6 +278,33 @@ namespace HurtowniaFarmaceutycznaApp
         }
 
         private void numQuantity_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void wczytajDaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadData();
+            ClearStatusMessage();
+        }
+
+        private void zapiszDaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Converters = { new ProductConverter() }
+            };
+            SaveData(products);
+
+        }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripStatusLabel2_Click(object sender, EventArgs e)
         {
 
         }

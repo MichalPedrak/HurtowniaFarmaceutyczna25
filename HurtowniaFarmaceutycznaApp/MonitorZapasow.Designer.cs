@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitorZapasow));
             dataGridViewProducts = new DataGridView();
             lblName = new Label();
@@ -36,24 +37,29 @@
             btnSort = new Button();
             cmbSort = new ComboBox();
             btnRemove = new Button();
-            btnLoad = new Button();
-            btnSave = new Button();
             numNewQty = new NumericUpDown();
             btnChangeQty = new Button();
             txtSearch = new TextBox();
             lblMedicineType = new Label();
             cmbMedicineType = new ComboBox();
-            DataLoader = new GroupBox();
             Sort = new GroupBox();
             AddToTable = new GroupBox();
             ManageList = new GroupBox();
+            menuStrip1 = new MenuStrip();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            wczytajDaneToolStripMenuItem = new ToolStripMenuItem();
+            zapiszDaneToolStripMenuItem = new ToolStripMenuItem();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            statusStrip1 = new StatusStrip();
+            StatusStrip = new ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numNewQty).BeginInit();
-            DataLoader.SuspendLayout();
             Sort.SuspendLayout();
             AddToTable.SuspendLayout();
             ManageList.SuspendLayout();
+            menuStrip1.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridViewProducts
@@ -61,7 +67,7 @@
             dataGridViewProducts.AllowUserToAddRows = false;
             dataGridViewProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewProducts.Location = new Point(19, 122);
+            dataGridViewProducts.Location = new Point(12, 150);
             dataGridViewProducts.Name = "dataGridViewProducts";
             dataGridViewProducts.ReadOnly = true;
             dataGridViewProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -183,36 +189,6 @@
             btnRemove.UseVisualStyleBackColor = false;
             btnRemove.Click += btnRemove_Click;
             // 
-            // btnLoad
-            // 
-            btnLoad.BackColor = Color.White;
-            btnLoad.FlatAppearance.BorderSize = 0;
-            btnLoad.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
-            btnLoad.FlatStyle = FlatStyle.Popup;
-            btnLoad.ForeColor = Color.Black;
-            btnLoad.Location = new Point(4, 34);
-            btnLoad.Name = "btnLoad";
-            btnLoad.Size = new Size(320, 23);
-            btnLoad.TabIndex = 9;
-            btnLoad.Text = "Wczytaj dane";
-            btnLoad.UseVisualStyleBackColor = false;
-            btnLoad.Click += btnLoad_Click;
-            // 
-            // btnSave
-            // 
-            btnSave.BackColor = Color.White;
-            btnSave.FlatAppearance.BorderSize = 0;
-            btnSave.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
-            btnSave.FlatStyle = FlatStyle.Popup;
-            btnSave.ForeColor = Color.Black;
-            btnSave.Location = new Point(4, 60);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(320, 23);
-            btnSave.TabIndex = 8;
-            btnSave.Text = "Zapisz dane";
-            btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += btnSave_Click;
-            // 
             // numNewQty
             // 
             numNewQty.BorderStyle = BorderStyle.None;
@@ -259,31 +235,24 @@
             // 
             // cmbMedicineType
             // 
+            cmbMedicineType.DataSource = new MedicineType[]
+    {
+    MedicineType.Antybiotyk,
+    MedicineType.Przeciwbolowa
+    };
             cmbMedicineType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbMedicineType.DataSource = Enum.GetValues(typeof(MedicineType));
-            //cmbMedicineType.Items.AddRange(new object[] { MedicineType.Antybiotyk, MedicineType.Przeciwbolowa });
+            cmbMedicineType.Items.AddRange(new object[] { MedicineType.Antybiotyk, MedicineType.Przeciwbolowa });
             cmbMedicineType.Location = new Point(111, 109);
             cmbMedicineType.Name = "cmbMedicineType";
             cmbMedicineType.Size = new Size(213, 23);
             cmbMedicineType.TabIndex = 2;
-            // 
-            // DataLoader
-            // 
-            DataLoader.Controls.Add(btnLoad);
-            DataLoader.Controls.Add(btnSave);
-            DataLoader.Location = new Point(725, 12);
-            DataLoader.Name = "DataLoader";
-            DataLoader.Size = new Size(330, 104);
-            DataLoader.TabIndex = 23;
-            DataLoader.TabStop = false;
-            DataLoader.Text = "Wczytywanie Danych";
             // 
             // Sort
             // 
             Sort.Controls.Add(cmbSort);
             Sort.Controls.Add(btnSort);
             Sort.Controls.Add(txtSearch);
-            Sort.Location = new Point(19, 12);
+            Sort.Location = new Point(12, 40);
             Sort.Name = "Sort";
             Sort.Size = new Size(700, 104);
             Sort.TabIndex = 24;
@@ -301,7 +270,7 @@
             AddToTable.Controls.Add(btnAdd);
             AddToTable.Controls.Add(lblMedicineType);
             AddToTable.Controls.Add(dtpExpiration);
-            AddToTable.Location = new Point(725, 122);
+            AddToTable.Location = new Point(718, 40);
             AddToTable.Name = "AddToTable";
             AddToTable.Size = new Size(330, 177);
             AddToTable.TabIndex = 25;
@@ -313,25 +282,79 @@
             ManageList.Controls.Add(numNewQty);
             ManageList.Controls.Add(btnRemove);
             ManageList.Controls.Add(btnChangeQty);
-            ManageList.Location = new Point(725, 305);
+            ManageList.Location = new Point(718, 223);
             ManageList.Name = "ManageList";
             ManageList.Size = new Size(330, 119);
             ManageList.TabIndex = 26;
             ManageList.TabStop = false;
             ManageList.Text = "Zarządzaj Lekami";
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1 });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1065, 24);
+            menuStrip1.TabIndex = 27;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { wczytajDaneToolStripMenuItem, zapiszDaneToolStripMenuItem });
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(38, 20);
+            toolStripMenuItem1.Text = "Plik";
+            // 
+            // wczytajDaneToolStripMenuItem
+            // 
+            wczytajDaneToolStripMenuItem.Name = "wczytajDaneToolStripMenuItem";
+            wczytajDaneToolStripMenuItem.Size = new Size(145, 22);
+            wczytajDaneToolStripMenuItem.Text = "Wczytaj Dane";
+            wczytajDaneToolStripMenuItem.Click += wczytajDaneToolStripMenuItem_Click;
+            // 
+            // zapiszDaneToolStripMenuItem
+            // 
+            zapiszDaneToolStripMenuItem.Name = "zapiszDaneToolStripMenuItem";
+            zapiszDaneToolStripMenuItem.Size = new Size(145, 22);
+            zapiszDaneToolStripMenuItem.Text = "Zapisz dane";
+            zapiszDaneToolStripMenuItem.Click += zapiszDaneToolStripMenuItem_Click;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { StatusStrip });
+            statusStrip1.Location = new Point(0, 500);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(1065, 22);
+            statusStrip1.TabIndex = 28;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // StatusStrip
+            // 
+            StatusStrip.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            StatusStrip.Name = "StatusStrip";
+            StatusStrip.Size = new Size(1019, 17);
+            StatusStrip.Spring = true;
+            StatusStrip.Click += toolStripStatusLabel1_Click;
+            // 
             // MonitorZapasow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
-            ClientSize = new Size(1065, 466);
+            ClientSize = new Size(1065, 522);
+            Controls.Add(statusStrip1);
             Controls.Add(ManageList);
             Controls.Add(AddToTable);
             Controls.Add(Sort);
-            Controls.Add(DataLoader);
             Controls.Add(dataGridViewProducts);
+            Controls.Add(menuStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MainMenuStrip = menuStrip1;
             Name = "MonitorZapasow";
             Text = "Hurtownia Farmaceutyczna";
             Load += MonitorZapasow_Load;
@@ -339,13 +362,17 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).EndInit();
             ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
             ((System.ComponentModel.ISupportInitialize)numNewQty).EndInit();
-            DataLoader.ResumeLayout(false);
             Sort.ResumeLayout(false);
             Sort.PerformLayout();
             AddToTable.ResumeLayout(false);
             AddToTable.PerformLayout();
             ManageList.ResumeLayout(false);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -363,14 +390,18 @@
         private Button btnSort;
         private ComboBox cmbSort;
         private Button btnRemove;
-        private Button btnLoad;
-        private Button btnSave;
         private NumericUpDown numNewQty;
         private Button btnChangeQty;
         private TextBox txtSearch;
-        private GroupBox DataLoader;
         private GroupBox Sort;
         private GroupBox AddToTable;
         private GroupBox ManageList;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem wczytajDaneToolStripMenuItem;
+        private ToolStripMenuItem zapiszDaneToolStripMenuItem;
+        private ContextMenuStrip contextMenuStrip1;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel StatusStrip;
     }
 }
