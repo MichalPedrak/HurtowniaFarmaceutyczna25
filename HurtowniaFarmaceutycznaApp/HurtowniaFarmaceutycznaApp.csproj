@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>treatment_drug_medication_capsules_drugs_medicine_pill_capsule_pills_icon_210667.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="treatment_drug_medication_capsules_drugs_medicine_pill_capsule_pills_icon_210667.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HurtowniaFarmaceutycznaLibrary\HurtowniaFarmaceutycznaLibrary.csproj" />
