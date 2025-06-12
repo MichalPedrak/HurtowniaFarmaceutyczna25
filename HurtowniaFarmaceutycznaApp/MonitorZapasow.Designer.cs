@@ -86,6 +86,7 @@
             txtName.PlaceholderText = "Nazwa leku";
             txtName.Size = new Size(213, 23);
             txtName.TabIndex = 2;
+            txtName.TextChanged += txtName_TextChanged;
             // 
             // lblQty
             // 
@@ -115,6 +116,7 @@
             numQuantity.Size = new Size(213, 23);
             numQuantity.TabIndex = 5;
             numQuantity.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numQuantity.ValueChanged += numQuantity_ValueChanged;
             // 
             // dtpExpiration
             // 
@@ -258,8 +260,8 @@
             // cmbMedicineType
             // 
             cmbMedicineType.DropDownStyle = ComboBoxStyle.DropDownList;
-            //cmbMedicineType.Items.AddRange(new object[] { MedicineType.Antybiotyk, MedicineType.Przeciwbolowa });
             cmbMedicineType.DataSource = Enum.GetValues(typeof(MedicineType));
+            //cmbMedicineType.Items.AddRange(new object[] { MedicineType.Antybiotyk, MedicineType.Przeciwbolowa });
             cmbMedicineType.Location = new Point(111, 109);
             cmbMedicineType.Name = "cmbMedicineType";
             cmbMedicineType.Size = new Size(213, 23);

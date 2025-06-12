@@ -23,18 +23,18 @@ namespace HurtowniaFarmaceutycznaApp
             cmbSort.Items.Add("Termin malejąco");
             cmbSort.SelectedIndex = 0;
 
-            if (!File.Exists("leki.json"))
-            {
-                MessageBox.Show("Brak pliku do wczytania.");
-                return;
-            }
+            //if (!File.Exists("leki.json"))
+            //{
+            //    MessageBox.Show("Brak pliku do wczytania.");
+            //    return;
+            //}
+            //
+            //var options = new JsonSerializerOptions
+            //{
+            //   Converters = { new ProductConverter() }
+            //};
 
-            var options = new JsonSerializerOptions
-            {
-                Converters = { new ProductConverter() }
-            };
-
-            products = JsonSerializer.Deserialize<List<Medicine>>(File.ReadAllText("leki.json"), options)!;
+            products = DataStorage.Load(); //JsonSerializer.Deserialize<List<Medicine>>(File.ReadAllText("leki.json"), options)!;
 
             RefreshGrid();
             MessageBox.Show("Dane wczytane.");
@@ -113,10 +113,10 @@ namespace HurtowniaFarmaceutycznaApp
                         break;
                     default:
                         throw new Exception("Nieobsługiwany typ leku");
-                   
+
                 }
                 products.Add(med);
-            } 
+            }
             DataStorage.Save(products);
             RefreshGrid();
 
@@ -132,24 +132,25 @@ namespace HurtowniaFarmaceutycznaApp
                 Converters = { new ProductConverter() } // je�li IProduct jest interfejsem
             };
 
-            File.WriteAllText("leki.json", JsonSerializer.Serialize(products, options));
+            //File.WriteAllText("leki.json", JsonSerializer.Serialize(products, options));
+            DataStorage.Save(products);
             MessageBox.Show("Dane zapisane do pliku.");
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            if (!File.Exists("leki.json"))
-            {
-                MessageBox.Show("Brak pliku do wczytania.");
-                return;
-            }
-
-            var options = new JsonSerializerOptions
-            {
-                Converters = { new ProductConverter() }
-            };
-
-            products = JsonSerializer.Deserialize<List<Medicine>>(File.ReadAllText("leki.json"), options)!;
+            //if (!File.Exists("data.json"))
+            //{
+            //    MessageBox.Show("Brak pliku do wczytania.");
+            //    return;
+            //}
+            //
+            //var options = new JsonSerializerOptions
+            //{
+            //    Converters = { new ProductConverter() }
+            //};
+            //
+            products = DataStorage.Load(); //JsonSerializer.Deserialize<List<Medicine>>(File.ReadAllText("leki.json"), options)!;
 
             RefreshGrid();
             MessageBox.Show("Dane wczytane.");
@@ -274,6 +275,16 @@ namespace HurtowniaFarmaceutycznaApp
             dataGridViewProducts.DataSource = prod;
 
             ColorExpiredProducts();
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numQuantity_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

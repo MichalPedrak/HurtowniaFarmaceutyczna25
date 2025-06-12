@@ -15,7 +15,6 @@ namespace HurtowniaFarmaceutycznaLibrary.Models
 
         public override void UpdateQuantity(int amount)
         {
-            // np. specjalna logika: antybiotyki nie mogą mieć ilości ujemnej
             if (Quantity + amount >= 0)
             {
                 base.UpdateQuantity(amount);
