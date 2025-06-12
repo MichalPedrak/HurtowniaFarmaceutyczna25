@@ -258,7 +258,8 @@
             // cmbMedicineType
             // 
             cmbMedicineType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbMedicineType.Items.AddRange(new object[] { MedicineType.Antybiotyk, MedicineType.Przeciwbolowa });
+            //cmbMedicineType.Items.AddRange(new object[] { MedicineType.Antybiotyk, MedicineType.Przeciwbolowa });
+            cmbMedicineType.DataSource = Enum.GetValues(typeof(MedicineType));
             cmbMedicineType.Location = new Point(111, 109);
             cmbMedicineType.Name = "cmbMedicineType";
             cmbMedicineType.Size = new Size(213, 23);
