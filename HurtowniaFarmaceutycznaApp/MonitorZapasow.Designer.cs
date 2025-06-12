@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitorZapasow));
             dataGridViewProducts = new DataGridView();
             lblName = new Label();
             txtName = new TextBox();
@@ -35,23 +36,28 @@
             btnSort = new Button();
             cmbSort = new ComboBox();
             btnRemove = new Button();
-            txtTitleAdd = new Label();
-            txtManageProducts = new Label();
             btnLoad = new Button();
             btnSave = new Button();
-            txtData = new Label();
             numNewQty = new NumericUpDown();
             btnChangeQty = new Button();
-            label1 = new Label();
             txtSearch = new TextBox();
+            lblMedicineType = new Label();
+            cmbMedicineType = new ComboBox();
+            DataLoader = new GroupBox();
+            Sort = new GroupBox();
+            AddToTable = new GroupBox();
+            ManageList = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numNewQty).BeginInit();
+            DataLoader.SuspendLayout();
+            Sort.SuspendLayout();
+            AddToTable.SuspendLayout();
+            ManageList.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridViewProducts
             // 
-            dataGridViewProducts.AutoGenerateColumns = true;
             dataGridViewProducts.AllowUserToAddRows = false;
             dataGridViewProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -66,7 +72,7 @@
             // 
             lblName.AutoSize = true;
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(725, 172);
+            lblName.Location = new Point(4, 25);
             lblName.Name = "lblName";
             lblName.Size = new Size(73, 15);
             lblName.TabIndex = 1;
@@ -75,7 +81,7 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(832, 164);
+            txtName.Location = new Point(111, 22);
             txtName.Name = "txtName";
             txtName.PlaceholderText = "Nazwa leku";
             txtName.Size = new Size(213, 23);
@@ -85,7 +91,7 @@
             // 
             lblQty.AutoSize = true;
             lblQty.ForeColor = Color.White;
-            lblQty.Location = new Point(725, 201);
+            lblQty.Location = new Point(6, 53);
             lblQty.Name = "lblQty";
             lblQty.Size = new Size(34, 15);
             lblQty.TabIndex = 3;
@@ -95,7 +101,7 @@
             // 
             lblDate.AutoSize = true;
             lblDate.ForeColor = Color.White;
-            lblDate.Location = new Point(725, 230);
+            lblDate.Location = new Point(6, 86);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(87, 15);
             lblDate.TabIndex = 4;
@@ -103,7 +109,7 @@
             // 
             // numQuantity
             // 
-            numQuantity.Location = new Point(832, 193);
+            numQuantity.Location = new Point(111, 51);
             numQuantity.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numQuantity.Name = "numQuantity";
             numQuantity.Size = new Size(213, 23);
@@ -113,34 +119,10 @@
             // dtpExpiration
             // 
             dtpExpiration.Format = DateTimePickerFormat.Short;
-            dtpExpiration.Location = new Point(832, 222);
+            dtpExpiration.Location = new Point(111, 80);
             dtpExpiration.Name = "dtpExpiration";
             dtpExpiration.Size = new Size(213, 23);
             dtpExpiration.TabIndex = 6;
-  
-            // 
-            // lblMedicineType
-            // 
-            lblMedicineType = new Label();
-            lblMedicineType.AutoSize = true;
-            lblMedicineType.ForeColor = Color.White;
-            lblMedicineType.Location = new Point(725, 250); 
-            lblMedicineType.Name = "lblMedicineType";
-            lblMedicineType.Size = new Size(213, 23);
-            lblMedicineType.Text = "Typ leku";
-            // 
-            // cmbMedicineType
-            // 
-            cmbMedicineType = new ComboBox();
-            cmbMedicineType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbMedicineType.Location = new Point(832, 250); 
-            cmbMedicineType.Name = "cmbMedicineType";
-            cmbMedicineType.Size = new Size(150, 23);
-            cmbMedicineType.TabIndex = 2;
-            
-            cmbMedicineType.DataSource = Enum.GetValues(typeof(MedicineType));
-      
-
             // 
             // btnAdd
             // 
@@ -149,9 +131,9 @@
             btnAdd.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
             btnAdd.FlatStyle = FlatStyle.Popup;
             btnAdd.ForeColor = Color.Black;
-            btnAdd.Location = new Point(725, 280);
+            btnAdd.Location = new Point(4, 138);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(320, 57);
+            btnAdd.Size = new Size(320, 23);
             btnAdd.TabIndex = 7;
             btnAdd.Text = "Dodaj lek";
             btnAdd.UseVisualStyleBackColor = false;
@@ -164,9 +146,9 @@
             btnSort.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
             btnSort.FlatStyle = FlatStyle.Popup;
             btnSort.ForeColor = Color.Black;
-            btnSort.Location = new Point(19, 84);
+            btnSort.Location = new Point(349, 34);
             btnSort.Name = "btnSort";
-            btnSort.Size = new Size(352, 23);
+            btnSort.Size = new Size(345, 23);
             btnSort.TabIndex = 10;
             btnSort.Text = "Sortuj";
             btnSort.UseVisualStyleBackColor = false;
@@ -179,9 +161,9 @@
             cmbSort.FlatStyle = FlatStyle.Popup;
             cmbSort.ForeColor = SystemColors.WindowText;
             cmbSort.FormattingEnabled = true;
-            cmbSort.Location = new Point(19, 55);
+            cmbSort.Location = new Point(7, 34);
             cmbSort.Name = "cmbSort";
-            cmbSort.Size = new Size(352, 23);
+            cmbSort.Size = new Size(336, 23);
             cmbSort.TabIndex = 11;
             // 
             // btnRemove
@@ -191,35 +173,13 @@
             btnRemove.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
             btnRemove.FlatStyle = FlatStyle.Popup;
             btnRemove.ForeColor = Color.Black;
-            btnRemove.Location = new Point(725, 419);
+            btnRemove.Location = new Point(6, 76);
             btnRemove.Name = "btnRemove";
             btnRemove.Size = new Size(320, 23);
             btnRemove.TabIndex = 12;
             btnRemove.Text = "Usuń lek";
             btnRemove.UseVisualStyleBackColor = false;
             btnRemove.Click += btnRemove_Click;
-            // 
-            // txtTitleAdd
-            // 
-            txtTitleAdd.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            txtTitleAdd.ForeColor = Color.FromArgb(0, 192, 192);
-            txtTitleAdd.Location = new Point(725, 122);
-            txtTitleAdd.Name = "txtTitleAdd";
-            txtTitleAdd.Size = new Size(320, 39);
-            txtTitleAdd.TabIndex = 13;
-            txtTitleAdd.Text = "Dodaj do listy";
-            txtTitleAdd.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // txtManageProducts
-            // 
-            txtManageProducts.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            txtManageProducts.ForeColor = Color.FromArgb(0, 192, 192);
-            txtManageProducts.Location = new Point(725, 320);
-            txtManageProducts.Name = "txtManageProducts";
-            txtManageProducts.Size = new Size(320, 42);
-            txtManageProducts.TabIndex = 15;
-            txtManageProducts.Text = "Zarządzaj lekami";
-            txtManageProducts.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnLoad
             // 
@@ -228,7 +188,7 @@
             btnLoad.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
             btnLoad.FlatStyle = FlatStyle.Popup;
             btnLoad.ForeColor = Color.Black;
-            btnLoad.Location = new Point(725, 54);
+            btnLoad.Location = new Point(4, 34);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(320, 23);
             btnLoad.TabIndex = 9;
@@ -243,7 +203,7 @@
             btnSave.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
             btnSave.FlatStyle = FlatStyle.Popup;
             btnSave.ForeColor = Color.Black;
-            btnSave.Location = new Point(725, 83);
+            btnSave.Location = new Point(4, 60);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(320, 23);
             btnSave.TabIndex = 8;
@@ -251,21 +211,10 @@
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
-            // txtData
-            // 
-            txtData.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            txtData.ForeColor = Color.FromArgb(0, 192, 192);
-            txtData.Location = new Point(725, 9);
-            txtData.Name = "txtData";
-            txtData.Size = new Size(320, 42);
-            txtData.TabIndex = 14;
-            txtData.Text = "Wczytywanie Danych";
-            txtData.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // numNewQty
             // 
             numNewQty.BorderStyle = BorderStyle.None;
-            numNewQty.Location = new Point(725, 365);
+            numNewQty.Location = new Point(6, 22);
             numNewQty.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numNewQty.Name = "numNewQty";
             numNewQty.Size = new Size(320, 19);
@@ -279,7 +228,7 @@
             btnChangeQty.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
             btnChangeQty.FlatStyle = FlatStyle.Popup;
             btnChangeQty.ForeColor = Color.Black;
-            btnChangeQty.Location = new Point(725, 390);
+            btnChangeQty.Location = new Point(6, 47);
             btnChangeQty.Name = "btnChangeQty";
             btnChangeQty.Size = new Size(320, 23);
             btnChangeQty.TabIndex = 19;
@@ -287,25 +236,86 @@
             btnChangeQty.UseVisualStyleBackColor = false;
             btnChangeQty.Click += btnChangeQty_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 238);
-            label1.ForeColor = Color.FromArgb(85, 236, 85);
-            label1.Location = new Point(19, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(352, 37);
-            label1.TabIndex = 20;
-            label1.Text = "Hurtownia Farmaceutyczna";
-            // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(377, 83);
+            txtSearch.Location = new Point(6, 63);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Wyszukiwanie";
-            txtSearch.Size = new Size(342, 23);
+            txtSearch.Size = new Size(688, 23);
             txtSearch.TabIndex = 21;
             txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // lblMedicineType
+            // 
+            lblMedicineType.AutoSize = true;
+            lblMedicineType.ForeColor = Color.White;
+            lblMedicineType.Location = new Point(4, 112);
+            lblMedicineType.Name = "lblMedicineType";
+            lblMedicineType.Size = new Size(51, 15);
+            lblMedicineType.TabIndex = 22;
+            lblMedicineType.Text = "Typ leku";
+            // 
+            // cmbMedicineType
+            // 
+            cmbMedicineType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbMedicineType.Items.AddRange(new object[] { MedicineType.Antybiotyk, MedicineType.Przeciwbolowa });
+            cmbMedicineType.Location = new Point(111, 109);
+            cmbMedicineType.Name = "cmbMedicineType";
+            cmbMedicineType.Size = new Size(213, 23);
+            cmbMedicineType.TabIndex = 2;
+            // 
+            // DataLoader
+            // 
+            DataLoader.Controls.Add(btnLoad);
+            DataLoader.Controls.Add(btnSave);
+            DataLoader.Location = new Point(725, 12);
+            DataLoader.Name = "DataLoader";
+            DataLoader.Size = new Size(330, 104);
+            DataLoader.TabIndex = 23;
+            DataLoader.TabStop = false;
+            DataLoader.Text = "Wczytywanie Danych";
+            // 
+            // Sort
+            // 
+            Sort.Controls.Add(cmbSort);
+            Sort.Controls.Add(btnSort);
+            Sort.Controls.Add(txtSearch);
+            Sort.Location = new Point(19, 12);
+            Sort.Name = "Sort";
+            Sort.Size = new Size(700, 104);
+            Sort.TabIndex = 24;
+            Sort.TabStop = false;
+            Sort.Text = "Filtrowanie";
+            // 
+            // AddToTable
+            // 
+            AddToTable.Controls.Add(lblName);
+            AddToTable.Controls.Add(txtName);
+            AddToTable.Controls.Add(lblQty);
+            AddToTable.Controls.Add(lblDate);
+            AddToTable.Controls.Add(numQuantity);
+            AddToTable.Controls.Add(cmbMedicineType);
+            AddToTable.Controls.Add(btnAdd);
+            AddToTable.Controls.Add(lblMedicineType);
+            AddToTable.Controls.Add(dtpExpiration);
+            AddToTable.Location = new Point(725, 122);
+            AddToTable.Name = "AddToTable";
+            AddToTable.Size = new Size(330, 177);
+            AddToTable.TabIndex = 25;
+            AddToTable.TabStop = false;
+            AddToTable.Text = "Dodaj Lek";
+            // 
+            // ManageList
+            // 
+            ManageList.Controls.Add(numNewQty);
+            ManageList.Controls.Add(btnRemove);
+            ManageList.Controls.Add(btnChangeQty);
+            ManageList.Location = new Point(725, 305);
+            ManageList.Name = "ManageList";
+            ManageList.Size = new Size(330, 119);
+            ManageList.TabIndex = 26;
+            ManageList.TabStop = false;
+            ManageList.Text = "Zarządzaj Lekami";
             // 
             // MonitorZapasow
             // 
@@ -313,37 +323,26 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SlateGray;
             ClientSize = new Size(1065, 466);
-            Controls.Add(txtSearch);
-            Controls.Add(label1);
-            Controls.Add(btnChangeQty);
-            Controls.Add(numNewQty);
-            Controls.Add(txtData);
-            Controls.Add(btnSave);
-            Controls.Add(btnLoad);
-            Controls.Add(txtManageProducts);
-            Controls.Add(txtTitleAdd);
-            Controls.Add(btnRemove);
-            Controls.Add(cmbSort);
-            Controls.Add(btnSort);
-            Controls.Add(btnAdd);
-            Controls.Add(dtpExpiration);
-            Controls.Add(lblMedicineType);
-            Controls.Add(cmbMedicineType);
-            Controls.Add(numQuantity);
-            Controls.Add(lblDate);
-            Controls.Add(lblQty);
-            Controls.Add(txtName);
-            Controls.Add(lblName);
+            Controls.Add(ManageList);
+            Controls.Add(AddToTable);
+            Controls.Add(Sort);
+            Controls.Add(DataLoader);
             Controls.Add(dataGridViewProducts);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MonitorZapasow";
-            Text = "Form1";
+            Text = "Hurtownia Farmaceutyczna";
             Load += MonitorZapasow_Load;
             Resize += MonitorZapasow_Resize;
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).EndInit();
             ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
             ((System.ComponentModel.ISupportInitialize)numNewQty).EndInit();
+            DataLoader.ResumeLayout(false);
+            Sort.ResumeLayout(false);
+            Sort.PerformLayout();
+            AddToTable.ResumeLayout(false);
+            AddToTable.PerformLayout();
+            ManageList.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -361,14 +360,14 @@
         private Button btnSort;
         private ComboBox cmbSort;
         private Button btnRemove;
-        private Label txtTitleAdd;
-        private Label txtManageProducts;
         private Button btnLoad;
         private Button btnSave;
-        private Label txtData;
         private NumericUpDown numNewQty;
         private Button btnChangeQty;
-        private Label label1;
         private TextBox txtSearch;
+        private GroupBox DataLoader;
+        private GroupBox Sort;
+        private GroupBox AddToTable;
+        private GroupBox ManageList;
     }
 }
