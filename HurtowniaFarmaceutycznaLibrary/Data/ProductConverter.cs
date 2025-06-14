@@ -16,19 +16,19 @@ namespace HurtowniaFarmaceutycznaLibrary.Data
             using var doc = JsonDocument.ParseValue(ref reader);
             var root = doc.RootElement;
 
-            // Try to get type as string first
+            
             if (root.TryGetProperty("Type", out var typeProp))
             {
                 MedicineType typeEnum;
 
                 if (typeProp.ValueKind == JsonValueKind.Number && typeProp.TryGetInt32(out var intVal))
                 {
-                    // Map number to enum
+                    
                     typeEnum = (MedicineType)intVal;
                 }
                 else if (typeProp.ValueKind == JsonValueKind.String)
                 {
-                    // Parse string to enum
+                    
                     if (!Enum.TryParse<MedicineType>(typeProp.GetString(), out typeEnum))
                         throw new NotSupportedException($"Unknown medicine type string: {typeProp.GetString()}");
                 }
@@ -37,7 +37,7 @@ namespace HurtowniaFarmaceutycznaLibrary.Data
                     throw new NotSupportedException("Unsupported Type property format");
                 }
 
-                // Deserialize based on enum
+                
                 return typeEnum switch
                 {
                     MedicineType.Antybiotyk => JsonSerializer.Deserialize<Antibiotic>(root.GetRawText(), options)!,

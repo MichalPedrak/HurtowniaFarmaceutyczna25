@@ -34,7 +34,7 @@ namespace HurtowniaFarmaceutycznaApp
         {
 
             var timer = new System.Windows.Forms.Timer();
-            timer.Interval = 5000; // 5 sekund
+            timer.Interval = 5000;
             timer.Tick += (s, e) =>
             {
                 StatusStrip.Text = "";
@@ -70,15 +70,15 @@ namespace HurtowniaFarmaceutycznaApp
         {
             foreach (DataGridViewRow row in dataGridViewProducts.Rows)
             {
-                
+
                 if (row.IsNewRow) continue;
-                
+
                 DateTime dataWaznosci;
                 if (DateTime.TryParse(row.Cells["ExpirationDate"].Value?.ToString(), out dataWaznosci))
                 {
                     if (dataWaznosci < DateTime.Now.Date)
                     {
-                        row.DefaultCellStyle.BackColor = Color.LightCoral; // lekko czerwone
+                        row.DefaultCellStyle.BackColor = Color.LightCoral;
                     }
                     else
                     {
@@ -163,10 +163,10 @@ namespace HurtowniaFarmaceutycznaApp
                 case "Ilość rosnąco":
                     products = products.OrderBy(p => p.Quantity).ToList();
                     break;
-                case "Ilość malej�co":
+                case "Ilość malejąco":
                     products = products.OrderByDescending(p => p.Quantity).ToList();
                     break;
-                case "Termin rosn�co":
+                case "Termin rosnąco":
                     products = products.OrderBy(p => p.ExpirationDate).ToList();
                     break;
                 case "Termin malejąco":
@@ -305,6 +305,11 @@ namespace HurtowniaFarmaceutycznaApp
         }
 
         private void toolStripStatusLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbSort_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

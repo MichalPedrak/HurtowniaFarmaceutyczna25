@@ -173,6 +173,7 @@
             cmbSort.Name = "cmbSort";
             cmbSort.Size = new Size(336, 23);
             cmbSort.TabIndex = 11;
+            cmbSort.SelectedIndexChanged += cmbSort_SelectedIndexChanged;
             // 
             // btnRemove
             // 
@@ -235,13 +236,9 @@
             // 
             // cmbMedicineType
             // 
-            cmbMedicineType.DataSource = new MedicineType[]
-    {
-    MedicineType.Antybiotyk,
-    MedicineType.Przeciwbolowa
-    };
+            
             cmbMedicineType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbMedicineType.Items.AddRange(new object[] { MedicineType.Antybiotyk, MedicineType.Przeciwbolowa });
+            cmbMedicineType.DataSource = Enum.GetValues(typeof(MedicineType));
             cmbMedicineType.Location = new Point(111, 109);
             cmbMedicineType.Name = "cmbMedicineType";
             cmbMedicineType.Size = new Size(213, 23);
@@ -337,7 +334,7 @@
             // 
             StatusStrip.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             StatusStrip.Name = "StatusStrip";
-            StatusStrip.Size = new Size(1019, 17);
+            StatusStrip.Size = new Size(1050, 17);
             StatusStrip.Spring = true;
             StatusStrip.Click += toolStripStatusLabel1_Click;
             // 
